@@ -134,8 +134,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
      {
         
-    
-    if !(SearchCategory == nil) {
+    if searchBar.text!.isEmpty {
+   
             taskArray = realm.objects(Task.self)
                 .filter("category = '\(searchBar.text!)'")// ← filterの引数を考えて検索ができるようにしてみましょう
                 .sorted(byKeyPath: "date", ascending: false)
