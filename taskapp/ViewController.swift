@@ -131,7 +131,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+     {
+        
     
     if !(SearchCategory == nil) {
             taskArray = realm.objects(Task.self)
@@ -142,8 +144,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         else {
             taskArray = realm.objects(Task.self)
                 .sorted(byKeyPath: "date", ascending: false)
+        
         }
+        
+        tableView.reloadData()
     }
+    
     
 }
 
