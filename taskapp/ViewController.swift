@@ -131,20 +131,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
-     {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    {
         
-    if searchBar.text!.isEmpty {
-   
+        if searchBar.text!.isEmpty {
+            
             taskArray = realm.objects(Task.self)
-                .filter("category = '\(searchBar.text!)'")// ← filterの引数を考えて検索ができるようにしてみましょう
                 .sorted(byKeyPath: "date", ascending: false)
+            
         }
             // 検索のテキストが空のとき
         else {
+            
             taskArray = realm.objects(Task.self)
+                .filter("category = '\(searchText)'")// ← filterの引数を考えて検索ができるようにしてみましょう
                 .sorted(byKeyPath: "date", ascending: false)
-        
         }
         
         tableView.reloadData()
